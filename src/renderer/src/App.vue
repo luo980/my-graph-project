@@ -1,97 +1,60 @@
-<script setup lang="ts">
-import Versions from './components/Versions.vue'
-</script>
-
 <template>
-  <Versions></Versions>
-
-  <svg class="hero-logo" viewBox="0 0 900 300">
-    <use xlink:href="./assets/icons.svg#electron" />
-  </svg>
-  <h2 class="hero-text">You've successfully created an Electron project with Vue and TypeScript</h2>
-  <p class="hero-tagline">Please try pressing <code>F12</code> to open the devTool</p>
-
-  <div class="links">
-    <div class="link-item">
-      <a target="_blank" href="https://electron-vite.org">Documentation</a>
+  <div>
+    <h1>基于FFI的代码组织和构建</h1>
+    <div class="indexButton-container">
+      <button @click="goToFeature('definition')">获取函数声明</button>
+      <button @click="goToFeature('pipeline')">函数流程构造</button>
+      <button @click="goToFeature('generation')">代码生成结果</button>
     </div>
-    <div class="link-item link-dot">•</div>
-    <div class="link-item">
-      <a target="_blank" href="https://github.com/alex8088/electron-vite">Getting Help</a>
-    </div>
-    <div class="link-item link-dot">•</div>
-    <div class="link-item">
-      <a
-        target="_blank"
-        href="https://github.com/alex8088/quick-start/tree/master/packages/create-electron"
-      >
-        create-electron
-      </a>
-    </div>
-  </div>
-
-  <div class="features">
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Configuring</h2>
-        <p class="detail">
-          Config with <span>electron.vite.config.ts</span> and refer to the
-          <a target="_blank" href="https://electron-vite.org/config">config guide</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">HMR</h2>
-        <p class="detail">
-          Edit <span>src/renderer</span> files to test HMR. See
-          <a target="_blank" href="https://electron-vite.org/guide/hmr.html">docs</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Hot Reloading</h2>
-        <p class="detail">
-          Run <span>'electron-vite dev --watch'</span> to enable. See
-          <a target="_blank" href="https://electron-vite.org/guide/hot-reloading.html">docs</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Debugging</h2>
-        <p class="detail">
-          Check out <span>.vscode/launch.json</span>. See
-          <a target="_blank" href="https://electron-vite.org/guide/debugging.html">docs</a>.
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Source Code Protection</h2>
-        <p class="detail">
-          Supported via built-in plugin <span>bytecodePlugin</span>. See
-          <a target="_blank" href="https://electron-vite.org/guide/source-code-protection.html">
-            docs
-          </a>
-          .
-        </p>
-      </article>
-    </div>
-    <div class="feature-item">
-      <article>
-        <h2 class="title">Packaging</h2>
-        <p class="detail">
-          Use
-          <a target="_blank" href="https://www.electron.build">electron-builder</a>
-          and pre-configured to pack your app.
-        </p>
-      </article>
-    </div>
+    <hr class="indexHr" />
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="less">
-@import './assets/css/styles.less';
+<script lang="ts">
+export default {
+  methods: {
+    goToFeature(feature) {
+      // 根据 feature 实现页面跳转
+      this.$router.push(`/${feature}`)
+      console.log(`跳转到 ${feature}`)
+    }
+  }
+}
+</script>
+
+<style>
+hr {
+  border: none; /* 移除默认边框 */
+  height: 2px; /* 增加高度 */
+  background-color: blue; /* 使用明显的颜色 */
+}
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button {
+  margin: 10px;
+}
+
+.indexButton-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: lightblue;
+}
+
+.indexHr {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.new {
+  background-color: red;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 </style>
